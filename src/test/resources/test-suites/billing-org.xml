@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Billing Organization" parallel="tests" thread-count="2">
+	<test name="Billing Organization Positive Cases">
+	    <parameter name="workBookName" value="BillingOrgTestData.xlsx" />
+		<parameter name="sheetName" value="BillingOrg" />
+		<parameter name="tcID" value="TC_UI_BO_APPROVE_01" />
+		<classes>
+			<class
+				name="com.mvi.tests.billingorganization.BillingOrganizationTest"/>
+		</classes>
+	</test>
+		<test name="Billing Organization Positive Case">
+	    <parameter name="workBookName" value="BillingOrgTestData.xlsx" />
+		<parameter name="sheetName" value="BillingOrg" />
+		<parameter name="tcID" value="TC_UI_BO_APPROVE_02" />
+		<classes>
+			<class
+				name="com.mvi.tests.billingorganization.BillingOrganizationTest"/>
+		</classes>
+	</test>
+</suite>
