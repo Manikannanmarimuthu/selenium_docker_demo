@@ -31,6 +31,8 @@ pipeline{
             }
             steps{
                 // There might be a warning.
+                echo '${DOCKER_HUB_USR}'
+                ehho '${DOCKER_HUB_PSW}'
                 bat 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
                 bat 'docker push manikannanmarimuthu/seleniumdemo'
             }
