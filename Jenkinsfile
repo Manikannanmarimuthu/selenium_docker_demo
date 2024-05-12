@@ -21,7 +21,7 @@ pipeline{
         }
         stage('Push Image'){
             environment{
-                DOCKER_HUB = credentials('dockerhub-creds')
+                DOCKER_HUB = credentials('docker')
             }
             steps{
                 bat 'echo ${DOCKER_HUB_PSW} | docker login -u ${DOCKER_HUB_USR} --password-stdin'
