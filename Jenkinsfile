@@ -1,11 +1,3 @@
-/*
-    Note:
-    
-    Windows users use "bat" instead of "sh"
-    For ex: bat 'docker build -t=vinsdocker/selenium .'
-    
-    Do not use "vinsdocker" to push. Use your dockerhub account
-*/
 pipeline{
     agent any
     stages{
@@ -16,7 +8,7 @@ pipeline{
         }
         stage('Build Image'){
             steps{
-                bat 'docker build -t=manikannanmarimuthu/seleniumdemo .'
+                bat 'docker build -t=mani958/seleniumdemo .'
             }
         }
         stage('Push Image'){
@@ -25,7 +17,7 @@ pipeline{
             }
             steps{
                 bat 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
-                bat 'docker push manikannanmarimuthu/seleniumdemo'
+                bat 'docker push mani958/seleniumdemo'
             }
         }
 
