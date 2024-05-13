@@ -12,20 +12,23 @@ pipeline {
             }
         }
         stage('Push Image') {
-            environment {
-                DOCKER_HUB = credentials('docker')
-            }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_HUB_USR', passwordVariable: 'DOCKER_HUB_PSW')]) {
-                    bat 'docker login -u $DOCKER_HUB_USR -p $DOCKER_HUB_PSW'
-                    bat 'docker push mani958/seleniumdemo'
+                script {
+                    withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_HUB_USR'), string(credentialsId: 'docker', variable: 'DOCKER_HUB_PSW')]) {
+                        echo "Username: ${DOCKER_HUB_USR}"
+                        echo "Password: ********" // Print a placeholder instead of the actual password
+                        bat "docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}"
+                        bat 'docker push mani958/seleniumdemo'
+                    }
                 }
             }
         }
     }
     post {
         always {
-            bat 'docker logout'
+            script {
+                bat 'docker logout'
+            }
         }
     }
 }
