@@ -16,17 +16,16 @@ pipeline{
                 DOCKER_HUB = credentials('docker')
             }
             steps{
-                bat 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
-                bat 'docker push mani958/seleniumdemo'
+                withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_HUB_USR'), password(credentialsId: 'docker', variable: 'DOCKER_HUB_PSW')]) {
+                    bat 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
+                    bat 'docker push mani958/seleniumdemo'
+                }
             }
         }
-
     }
-
     post {
         always {
             bat 'docker logout'
         }
     }
-
 }
